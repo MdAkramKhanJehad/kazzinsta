@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+
+    <TextView
+        android:id="@+id/tvSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:paddingBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:id="@+id/etSignupUsername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tvSignup"
+        android:layout_marginTop="40dp"
+        android:hint="Username"
+        android:minHeight="48dp"
+
+        android:paddingLeft="13dp" />
+
+    <EditText
+        android:id="@+id/etSignupEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/etSignupUsername"
+        android:layout_marginTop="22dp"
+        android:hint="Email"
+        android:minHeight="48dp"
+        android:paddingLeft="13dp" />
+
+    <EditText
+        android:id="@+id/etSignupPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/etSignupEmail"
+        android:layout_marginTop="22dp"
+        android:hint="Password"
+        android:minHeight="48dp"
+        android:paddingLeft="13dp" />
+
+    <EditText
+        android:id="@+id/etRetypePassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/etSignupPassword"
+        android:layout_marginTop="22dp"
+        android:hint="Retype Password"
+        android:minHeight="48dp"
+        android:paddingLeft="13dp" />
+
+    <EditText
+        android:id="@+id/etSignupPhone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/etRetypePassword"
+        android:layout_marginTop="22dp"
+        android:hint="Phone Number"
+        android:minHeight="48dp"
+        android:paddingLeft="13dp" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="130dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etSignupPhone"
+        android:layout_centerHorizontal="true"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"/>
+
 
 </RelativeLayout>
