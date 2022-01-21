@@ -10,14 +10,20 @@
         android:id="@+id/etNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:enabled="true"
         android:layout_marginTop="18dp"
+        android:enabled="true"
         android:hint="Enter number"
         android:paddingLeft="15dp"
         android:textSize="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/etBreedName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spBreeds"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/etNumber"
+        app:layout_constraintTop_toTopOf="@+id/etNumber" />
 
     <EditText
         android:id="@+id/etBreedName"
@@ -26,9 +32,9 @@
         android:enabled="true"
         android:hint="BreedName(hound,akita,african)"
         android:paddingLeft="15dp"
-        app:layout_constraintStart_toEndOf="@id/etNumber"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spBreeds"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

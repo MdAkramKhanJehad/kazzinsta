@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kazinsta.databinding.ActivityHomeBinding
@@ -32,10 +32,11 @@ class Home: AppCompatActivity() {
     private lateinit var btnMulRandImg : Button
     private lateinit var etNumber: EditText
     private lateinit var etBreed: EditText
+    private lateinit var spinner: Spinner
     private lateinit var btnAllImgByBreed : Button
     private lateinit var btnMulRandImgByBreed : Button
     private var list = MutableLiveData<List<String>>()
-    var httpHelper =  HttpHelper()
+    private var httpHelper =  HttpHelper()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +46,34 @@ class Home: AppCompatActivity() {
         setupRecyclerView()
         initializeButtons()
 
+        lifecycleScope.launchWhenCreated {
+            val response = httpHelper.getListOfAllBreeds()
+
+            if (response != null) {
+                list.postValue(response as List<String>?)
+                println(list)
+            }
+            closeKeyboard()
+        }
+
+//        spinner = findViewById(R.id.spBreeds)
+//        spinner.onItemLongClickListener = object: AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+////selected          adapterView?.getItemAtPosition(position).toString()
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//
+//            }
+//
+//        }
+
+
         btnMulRandImg.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 var number = etNumber.text.toString()
                 if(number.isEmpty()){
-                    number = "10"
+                    number = "5"
                 }
 
                 val response = httpHelper.getMultipleRandomDogImage(number.toInt())
@@ -65,7 +89,7 @@ class Home: AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 var breed = etBreed.text.toString()
                 if(breed.isEmpty()){
-                    breed = "akita"
+                    breed = "hound"
                 }
 
                 val response = httpHelper.getAllDogImageByBreed(breed)
@@ -85,7 +109,7 @@ class Home: AppCompatActivity() {
                     breed = "akita"
                 }
                 if(number.isEmpty()){
-                    number = "10"
+                    number = "5"
                 }
 
                 val response = httpHelper.getMultipleRandomDogImageByBreed(breed,number.toInt())

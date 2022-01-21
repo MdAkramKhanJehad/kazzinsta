@@ -9,6 +9,9 @@ interface DogApi {
 //    @GET("/api/breeds/image/random")
 //    suspend fun getRandomDogImage() : Response<Dog>
 
+    @GET("/api/breeds/list/all")
+    suspend fun getListOfBreeds() : Response<RpBreed>
+
     @GET("/api/breeds/image/random/{count}")
     suspend fun getMultipleRandomDogImage(@Path("count") count: Int) : Response<RpDog>
 

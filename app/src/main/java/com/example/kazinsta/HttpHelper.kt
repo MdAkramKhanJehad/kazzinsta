@@ -33,10 +33,6 @@ class HttpHelper {
         val response  =
             RetrofitInstance.api.getAllDogImageByBreed(breedName)
 
-//        } catch (e: Exception){
-//            Log.e(TAG, "IOException, may be no internet")
-//        }
-
         if(response.isSuccessful && response.body() != null){
             message = response.body()!!.message!!
         } else{
@@ -52,10 +48,6 @@ class HttpHelper {
         val response  =
             RetrofitInstance.api.getMultipleRandomDogImageByBreed(breedName, count)
 
-//        } catch (e: Exception){
-//            Log.e(TAG, "IOException, may be no internet")
-//        }
-
         if(response.isSuccessful && response.body() != null){
             message = response.body()!!.message!!
         } else{
@@ -66,6 +58,23 @@ class HttpHelper {
 
         return message
     }
+
+//    suspend fun getListOfAllBreeds(): List<String?>{
+//        val response  =
+//            RetrofitInstance.api.getListOfBreeds()
+//
+//        if(response.isSuccessful && response.body() != null){
+//            message = response.body()!!.message!!
+//        } else{
+//            Log.e(TAG, "Response not successful")
+//        }
+//
+//        println("TYPE: ${message.javaClass.kotlin.simpleName}")
+//
+//        Log.d("Response",response.body().toString())
+//
+//        return message
+//    }
 
 
 
