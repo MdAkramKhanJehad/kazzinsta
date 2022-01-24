@@ -9,6 +9,7 @@ import java.lang.Exception
 class HttpHelper {
 
     private lateinit var message: List<String?>
+    private lateinit var breedList: Message
 
    suspend fun getMultipleRandomDogImage(count : Int) : List<String?> {
         val response  =
@@ -59,22 +60,22 @@ class HttpHelper {
         return message
     }
 
-//    suspend fun getListOfAllBreeds(): List<String?>{
-//        val response  =
-//            RetrofitInstance.api.getListOfBreeds()
-//
-//        if(response.isSuccessful && response.body() != null){
-//            message = response.body()!!.message!!
-//        } else{
-//            Log.e(TAG, "Response not successful")
-//        }
-//
+    suspend fun getListOfAllBreeds(): Message {
+        val response  =
+            RetrofitInstance.api.getListOfBreeds()
+
+        if(response.isSuccessful && response.body() != null){
+            breedList = response.body()!!.message!!
+        } else{
+            Log.e(TAG, "Response not successful")
+        }
+
 //        println("TYPE: ${message.javaClass.kotlin.simpleName}")
-//
-//        Log.d("Response",response.body().toString())
-//
-//        return message
-//    }
+
+        Log.d("Response",response.body().toString())
+
+        return breedList
+    }
 
 
 

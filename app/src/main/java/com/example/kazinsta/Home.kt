@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import kotlin.reflect.full.declaredMemberProperties
 
 
 const val TAG = "Home"
@@ -31,8 +32,10 @@ class Home: AppCompatActivity() {
 
     private lateinit var btnMulRandImg : Button
     private lateinit var etNumber: EditText
-    private lateinit var etBreed: EditText
     private lateinit var spinner: Spinner
+    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var breed: String
+    private  var breedList = mutableListOf<String>()
     private lateinit var btnAllImgByBreed : Button
     private lateinit var btnMulRandImgByBreed : Button
     private var list = MutableLiveData<List<String>>()
@@ -45,28 +48,42 @@ class Home: AppCompatActivity() {
         setContentView(binding.root)
         setupRecyclerView()
         initializeButtons()
+        spinner = findViewById(R.id.spBreeds)
 
         lifecycleScope.launchWhenCreated {
             val response = httpHelper.getListOfAllBreeds()
 
             if (response != null) {
-                list.postValue(response as List<String>?)
-                println(list)
+                println(response)
+                val fields = response::class.declaredMemberProperties
+
+                for (i in fields) {
+                    breedList.add(i.name)
+                    Log.d("Fields ===", i.name)
+                }
+
+                adapter = ArrayAdapter<String>(
+                    this@Home,
+                    R.layout.support_simple_spinner_dropdown_item,
+                    breedList
+                )
+                spinner.adapter = adapter
+
             }
             closeKeyboard()
         }
 
-//        spinner = findViewById(R.id.spBreeds)
-//        spinner.onItemLongClickListener = object: AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-////selected          adapterView?.getItemAtPosition(position).toString()
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//
-//            }
-//
-//        }
+
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                breed = adapterView?.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                breed = "akita"
+            }
+
+        }
 
 
         btnMulRandImg.setOnClickListener {
@@ -87,8 +104,8 @@ class Home: AppCompatActivity() {
 
         btnAllImgByBreed.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                var breed = etBreed.text.toString()
                 if(breed.isEmpty()){
+                    println("EMPTY BREED")
                     breed = "hound"
                 }
 
@@ -103,7 +120,7 @@ class Home: AppCompatActivity() {
 
         btnMulRandImgByBreed.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                var breed = etBreed.text.toString()
+//                breed = etBreed.text.toString()
                 var number = etNumber.text.toString()
                 if(breed.isEmpty()){
                     breed = "akita"
@@ -146,7 +163,6 @@ class Home: AppCompatActivity() {
         btnMulRandImg = findViewById(R.id.btnMulRandImg)
         btnAllImgByBreed = findViewById(R.id.btnAllImgByBreed)
         btnMulRandImgByBreed = findViewById(R.id.btnMulRandImgByBreed)
-        etBreed = findViewById(R.id.etBreedName)
         etNumber = findViewById(R.id.etNumber)
     }
 
