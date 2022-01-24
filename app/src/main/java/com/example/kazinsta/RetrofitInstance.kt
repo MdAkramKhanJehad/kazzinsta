@@ -9,8 +9,8 @@ import retrofit2.create
 object RetrofitInstance {
 
     val api: DogApi by lazy {
-        val logger = HttpLoggingInterceptor()
 
+        val logger = HttpLoggingInterceptor()
         logger.level = HttpLoggingInterceptor.Level.BASIC
         val client = OkHttpClient.Builder()
         client.addInterceptor(logger)

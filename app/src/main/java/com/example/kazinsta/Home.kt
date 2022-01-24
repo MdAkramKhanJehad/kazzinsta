@@ -166,7 +166,4 @@ class Home: AppCompatActivity() {
         etNumber = findViewById(R.id.etNumber)
     }
 
-
-
-
 }

@@ -12,8 +12,7 @@ class HttpHelper {
     private lateinit var breedList: Message
 
    suspend fun getMultipleRandomDogImage(count : Int) : List<String?> {
-        val response  =
-            RetrofitInstance.api.getMultipleRandomDogImage(count)
+        val response = RetrofitInstance.api.getMultipleRandomDogImage(count)
 
 //        } catch (e: Exception){
 //            Log.e(TAG, "IOException, may be no internet")
