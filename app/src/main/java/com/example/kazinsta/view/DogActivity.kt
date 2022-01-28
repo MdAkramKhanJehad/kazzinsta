@@ -19,6 +19,8 @@ import com.example.kazinsta.viewmodel.DogViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.reflect.full.declaredMemberProperties
+
 
 
 class DogActivity: AppCompatActivity() {
@@ -42,6 +44,7 @@ class DogActivity: AppCompatActivity() {
         setContentView(binding.root)
         setupRecyclerView()
         initializeButtons()
+
         initializeUi()
 
     }
@@ -51,13 +54,13 @@ class DogActivity: AppCompatActivity() {
         val factory = InjectorUtils.provideDogsViewModelFactory()
         val viewModel = ViewModelProvider(this, factory).get(DogViewModel::class.java)
 
-
         spinner = findViewById(R.id.spBreeds)
         lifecycleScope.launchWhenCreated {
             val response = viewModel.getListOfAllBreeds()
 
             if (response != null) {
                 println(response)
+
                 breedList = getFields(response)
 
                 adapter = ArrayAdapter<String>(
