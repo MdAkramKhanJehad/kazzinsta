@@ -12,18 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kazinsta">
 
-        <activity android:name=".SignUp"
+        <activity android:name=".view.SignUp"
             android:exported="false"/>
         <activity
-            android:name=".LogIn"
+            android:name=".view.LogIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Home"/>
+        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.DogActivity"/>
     </application>
 
 </manifest>

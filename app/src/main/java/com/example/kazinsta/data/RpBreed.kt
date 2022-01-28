@@ -1,4 +1,4 @@
-package com.example.kazinsta
+package com.example.kazinsta.data
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,14 +1,12 @@
-package com.example.kazinsta
+package com.example.kazinsta.data
 
+import com.example.kazinsta.data.RpBreed
+import com.example.kazinsta.data.RpDog
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface DogApi {
-
-//    @GET("/api/breeds/image/random")
-//    suspend fun getRandomDogImage() : Response<Dog>
-
     @GET("/api/breeds/list/all")
     suspend fun getListOfBreeds() : Response<RpBreed>
 

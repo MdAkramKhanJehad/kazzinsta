@@ -1,7 +1,6 @@
-package com.example.kazinsta
+package com.example.kazinsta.view
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -18,7 +17,6 @@ class DogAdapter(val context:Context) : RecyclerView.Adapter<DogAdapter.DogViewH
         override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
-
 
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem

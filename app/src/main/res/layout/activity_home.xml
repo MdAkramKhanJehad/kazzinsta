@@ -22,20 +22,9 @@
         android:id="@+id/spBreeds"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/etNumber"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/etNumber" />
 
-    <EditText
-        android:id="@+id/etBreedName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:enabled="true"
-        android:hint="BreedName(hound,akita,african)"
-        android:paddingLeft="15dp"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spBreeds"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnMulRandImg"

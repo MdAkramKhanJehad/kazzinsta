@@ -1,9 +1,10 @@
-package com.example.kazinsta
+package com.example.kazinsta.view
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kazinsta.R
 
 class SignUp: AppCompatActivity() {
 

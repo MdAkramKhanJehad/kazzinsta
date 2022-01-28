@@ -1,13 +1,13 @@
-package com.example.kazinsta
+package com.example.kazinsta.view
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kazinsta.R
 
 class LogIn: AppCompatActivity() {
 
@@ -47,7 +47,7 @@ class LogIn: AppCompatActivity() {
     private fun login(email: String, password: String) {
 
         if(true){
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, DogActivity::class.java)
             startActivity(intent)
         }
 

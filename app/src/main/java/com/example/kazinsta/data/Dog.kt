@@ -1,4 +1,4 @@
-package com.example.kazinsta
+package com.example.kazinsta.data
 
 data class Dog(
     val message: List<String>,
